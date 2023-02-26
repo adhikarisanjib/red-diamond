@@ -1,0 +1,39 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}About{% endblock %}
+
+{% block main %}
+
+<style>
+    .style-border {
+        border-radius: 0 2rem 0 2rem;
+    }
+</style>
+
+<section class="ourteam py-5 bg-White">
+    <div class="container text-center  my-4">
+        <div>
+            <a href="{% url 'website:about' %}">
+                <h1>Our <span class="text-danger">Team</span></h1>
+            </a>
+            <hr class="w-25 m-auto">
+        </div>
+        <div class="d-flex justify-content-center flex-wrap mt-4">
+            {% for member in members %}
+            <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center mb-5">
+                <div class="card style-border" style="width: 18rem;">
+                    <div class="card-body">
+                        <img src="{{ member.image.url }}" class="img-fluid rounded-circle border border-danger p-2">
+                        <h5 class="card-title mt-2">{{ member.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ member.position }}</h6>
+                        <p class="card-text">{{ member.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

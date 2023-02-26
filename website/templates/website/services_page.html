@@ -1,0 +1,76 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% load temptags %}
+
+{% block title %}Services{% endblock %}
+
+{% block main %}
+
+<style>
+    img {
+        width: 300px;
+        height: 300px;
+    }
+</style>
+
+<div class="d-flex flex-column align-items-center m-4">
+    {% if all %}
+    {% for service in services %}
+    <div class="d-flex flex-column align-items-center col-sm-12 col-md-10 col-lg-8">
+        <h1>{{ service.name }}</h1>
+        <p class="">{{ service.description }}</p>
+    </div>
+    {% for sub_service in service.services.all %}
+    <div class="py-2 border-top d-flex flex-column justify-content-center align-items-center mt-2 pt-4">
+        <div class="d-flex flex-column align-items-center col-sm-12 col-md-10 col-lg-8">
+            <h4>{{ sub_service.name }}</h4>
+            <p class="">{{ sub_service.description }}</p>
+        </div>
+        <div class="d-flex justify-content-center flex-wrap mx-6 my-6">
+            {% for image in sub_service.sub_services.all|slice:4 %}
+            <img class="mx-4 my-2" src="{{ image.image.url }}">
+            {% endfor %}
+        </div>
+        <a class="btn btn-info my-3" href="{% url 'website:services' type='sub_service' id=sub_service.id %}">View
+            All</a>
+    </div>
+    {% endfor %}
+    {% endfor %}
+
+    {% elif service %}
+    <div class="d-flex flex-column align-items-center col-sm-12 col-md-10 col-lg-8">
+        <h1>{{ service.name }}</h1>
+        <p class="">{{ service.description }}</p>
+    </div>
+    {% for sub_service in service.services.all %}
+    <div class="py-2 border-top d-flex flex-column justify-content-center align-items-center mt-2 pt-4">
+        <div class="d-flex flex-column align-items-center col-sm-12 col-md-10 col-lg-8">
+            <h4>{{ sub_service.name }}</h4>
+            <p class="">{{ sub_service.description }}</p>
+        </div>
+        <div class="d-flex justify-content-center flex-wrap mx-6 my-6">
+            {% for image in sub_service.sub_services.all|slice:4 %}
+            <img class="mx-4 my-2" src="{{ image.image.url }}">
+            {% endfor %}
+        </div>
+        <a class="btn btn-info my-3" href="{% url 'website:services' type='sub_service' id=sub_service.id %}">View
+            All</a>
+    </div>
+    {% endfor %}
+
+    {% elif sub_service %}
+    <div class="py-2 d-flex flex-column justify-content-center align-items-center mt-2 pt-4">
+        <div class="d-flex flex-column align-items-center col-sm-12 col-md-10 col-lg-8">
+            <h4>{{ sub_service.name }}</h4>
+            <p class="">{{ sub_service.description }}</p>
+        </div>
+        <div class="d-flex justify-content-center flex-wrap mx-6 my-6">
+            {% for image in sub_service.sub_services.all %}
+            <img class="mx-4 my-2" src="{{ image.image.url }}">
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

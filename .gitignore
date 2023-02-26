@@ -1,0 +1,9 @@
+# Python Files
+
+/venv
+
+# media/*
+
+*.cpython-310.pyc
+
+db.sqlite3

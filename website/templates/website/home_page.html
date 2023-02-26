@@ -1,0 +1,157 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+
+<style>
+    .parallax {
+        /* The image used */
+        background-image: url("{{ parallex_image.image.url }}");
+
+        /* Set a specific height */
+        min-height: 500px;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .carousel-item img {
+        object-fit: cover;
+    }
+
+    .style-border {
+        border-radius: 0 2rem 0 2rem;
+    }
+</style>
+
+
+<seactio>
+    <div class="parallax"></div>
+</seactio>
+
+
+<section class="about">
+    <div class="container text-center  my-5">
+        <div>
+            <a href="{% url 'website:about' %}">
+                <h1>About <span class="text-danger">Us</span></h1>
+            </a>
+            <hr class="w-25 m-auto">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6 col-12">
+            <h1 class="text-center text-danger">{{ about.heading }}</h1>
+            <p class="p-2 text-start ms-5">
+                {{ about.content }}
+            </p>
+            <a href="{% url 'website:contact' %}" class="btn btn-outline-danger ms-5">Contact Us</a>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-12">
+            <img src="{{ about_image.image.url }}" class="aimg" alt="">
+        </div>
+    </div>
+</section>
+
+<seactio class="Current projects">
+    <div class="container text-center  my-5">
+        <div>
+            <h1>Current <span class="text-danger">Projects</span></h1>
+            <hr class="w-25 m-auto">
+        </div>
+    </div>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            {% for image in crousal_images %}
+            <div class="carousel-item {% if image == crousal_images|first %}active{% endif %}">
+                <img src="{{ image.image.url }}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ image.heading }}</h5>
+                    <p>{{ image.content }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</seactio>
+
+
+<section class="services py-4 bg-light">
+    <div class="container text-center my-2">
+        <div>
+            <a href="{% url 'website:services' %}">
+                <h1>Our <span class="text-danger">Servicse</span></h1>
+            </a>
+            <hr class="w-25 m-auto mb-2">
+        </div>
+        <div class="d-flex justify-content-center flex-wrap mt-4">
+            {% for service in services %}
+            <div class="col-sm-12 col-md-6 col-lg-4 d-flex justify-content-center mb-5">
+                <div class="card style-border" style="width: 18rem; height: 24rem;">
+                    <div class="card-body container-fluid">
+                        <h5 class="card-title border-bottom pb-1 mb-1">
+                            {{ service.name }}
+                        </h5>
+                        <p class="card-text overflow-auto">{{ service.description }}.</p>
+                    </div>
+                    <div class="mb-4">
+                        <a href="{% url 'website:services' type='service' id=service.id %}"
+                            class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<section class="ourteam bg-White">
+    <div class="container text-center  my-4">
+        <div>
+            <a href="{% url 'website:about' %}">
+                <h1>Our <span class="text-danger">Team</span></h1>
+            </a>
+            <hr class="w-25 m-auto">
+        </div>
+        <div class="d-flex justify-content-center flex-wrap mt-4">
+            {% for member in members %}
+            <div class="col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center mb-5">
+                <div class="card style-border" style="width: 18rem;">
+                    <div class="card-body">
+                        <img src="{{ member.image.url }}" class="img-fluid rounded-circle border border-danger p-2">
+                        <h5 class="card-title mt-2">{{ member.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ member.position }}</h6>
+                        <p class="card-text">{{ member.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

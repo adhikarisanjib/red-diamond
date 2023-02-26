@@ -1,0 +1,20 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}About{% endblock %}
+
+{% block main %}
+<div class="d-flex flex-column justify-content-center align-items-center my-4">
+    {% if contacts %}
+        {% for contact in contacts %}
+        <div class="px-4 pt-4 mt-2 w-75 shadow-sm">
+            <h6 class="pb-2 mb-2 border-bottom">{{ contact.email }} | {{ contact.contact_number }}</h6>
+            <h6 class="mt-2">{{ contact.name }}</h6>
+            <p class="mt-2">{{ contact.message }}</p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No records found.</p>
+        {% endif %}
+</div>
+{% endblock %}
