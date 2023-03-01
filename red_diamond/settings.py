@@ -85,7 +85,7 @@ WSGI_APPLICATION = "red_diamond.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASE_URL = "postgres://sanjib_001:8EnHwbEcelSH0UtrViv9C6eEXLEX1etX@dpg-cfs49i9gp3jt6timfbsg-a.singapore-postgres.render.com/red_diamond"
+DATABASE_URL = "postgresql://postgres:dEQEFmeEdLh2xFwCNAkE@containers-us-west-92.railway.app:6734/railway"
 
 DATABASES = {
     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
