@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-=x$lt0@fm1=wb!6-79httt7s2*p*5iky)uakn^6%w&$_h17l=)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["red-diamond.onrender.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["red-diamond-production.up.railway.app", "127.0.0.1"]
 
 
 # Application definition
