@@ -24,7 +24,7 @@ packaging==23.0
 pandas==1.5.3
 pathspec==0.11.0
 Pillow==9.4.0
-platformdirs==3.0.0
+platformdirs
 prompt-toolkit==3.0.36
 python-crontab==2.7.1
 python-dateutil==2.8.2
